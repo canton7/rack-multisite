@@ -43,9 +43,9 @@ Imagine you have the following folder layout:
 Inside `multisite-controller/config.ru`, do something similar to this:
 
 ```ruby
-require 'rack/multisite'
+require 'rack-multisite'
 
-run Rack::Multisite.new{
+run Rack_Multisite.new{
 	map('domain1.tld', '../app1')
 	map('domain2.tld', '../app2')
 }
@@ -59,11 +59,11 @@ Advanced Usage
 
 Now, there are of course more options available.
 
-The `Rack::Multisite` constructor takes an array of options, with the following optional keys:
+The `Rack_Multisite` constructor takes an array of options, with the following optional keys:
 
  - `:timeout`: The length of time, in seconds, that an application will idle for before shutting down.
 
-Inside the block passed to the `Rack::Multisite` constructor, you can only call one method, `map`.
+Inside the block passed to the `Rack_Multisite` constructor, you can only call one method, `map`.
 This method has the following prototype:
 
 ```ruby
@@ -75,7 +75,7 @@ More detail on those arguments:
 - `domain`: The domain which the application will be used to serve. It can either be a string, a regex, or the special value '*' (which matches if nothing else does, equivalent to `/.*/`).
 - `path`: The path to the folder containing the application.
 - `options`: A hash of the following optional arguments:
-  - `:timeout`: This will override the timeout given to the `Rack::Multisite` constructor.
+  - `:timeout`: This will override the timeout given to the `Rack_Multisite` constructor.
   - `:rackup_file`: The name of the rackup file, relative to `path`. Defaults to `config.ru`.
   - `:reload_file`: When the mtime of this file changes, the application will be reloaded. Defaults to `tmp/restart.txt`.
   - `:env`: A hash of parameters to be added to ENV, as seen by the application.
@@ -83,7 +83,7 @@ More detail on those arguments:
 Putting this all together, we can come up with a more complex example:
 
 ```ruby
-run Rack::Multisite.new(:timeout => 600){
+run Rack_Multisite.new(:timeout => 600){
 	map(/.*domain1\.tld$/, '../app1', :reload_file => 'reload.txt', :env => {
 		'DB_PASS' => '5up3r5ecr3t',
 	})
