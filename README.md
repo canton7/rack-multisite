@@ -110,5 +110,5 @@ Due to the forking, it won't run under Windows.
 
 Due to the piping going on, I strongly suspect that any asynchronous/eventmachine-y stuff will break it.
 
-If it crashes badly, changes are it will freeze and refuse to exit.
+If it crashes badly, chances are it will freeze and refuse to exit.
 In this case, a `pkill -9` is probably required.
